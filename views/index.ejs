@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Discord User Cards</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<div class="categories-container" id="categories-container">
+    <% userDataLists.forEach(categoryData => { %>
+        <div class="category">
+            <div class="category-title">» <%= categoryData.category %></div>
+
+            <div class="user-cards">
+                <% categoryData.users.forEach(userData => { %>
+                    <% if (userData && userData.id) { %>
+                        <div class="user-card">
+                            <img class="avatar" src="<%= userData.avatar ? userData.avatar.link['256'] : "https://noel.sefinek.net/images/null.jpg" %>" alt="<%= userData.globalName ? userData.globalName : userData.username %>">
+
+                            <div>
+                                <h3><%= userData.globalName ? `${userData.globalName} (${userData.username})` : `${userData.username}#${userData.discriminator}` %></h3>
+                                <% if (userData.id) { %>
+                                    <div class="acc-data"><code><%= userData.id %></code> - <%= userData.email %></div>
+                                <% } %>
+
+                                <% if (userData.createdAt) { %><div><span title="<%= userData.createdAt %>"><%= formatDateToPolish(userData.createdAt) %></span></div><% } %>
+                                <% if (userData.description) { %><div>* <%= userData.description %></div><% } %>
+                            </div>
+                        </div>
+                    <% } else { %>
+                        <div class="user-card">
+                            <img class="avatar" src="<%= userData.avatar ? userData.avatar.link['256'] : "https://noel.sefinek.net/images/null.jpg" %>" alt="">
+
+                            <div>
+                                <h3><%= userData.globalName ? `${userData.globalName || 'User was not found'} (${userData.username})` : userData.username || 'Not found' %></h3>
+                                <% if (userData.id || userData.email) { %>
+                                    <div class="acc-data"><code><%= userData.id || 'Unknown ID' %></code> • <%= userData.email || 'Unknown email' %></div>
+                                <% } %>
+
+                                <% if (userData.createdAt) { %><div><%= formatDateToPolish(userData.createdAt) %></div><% } %>
+                                <% if (userData.description) { %><div>* <%= userData.description %></div><% } %>
+                            </div>
+                        </div>
+                    <% } %>
+                <% }); %>
+            </div>
+        </div>
+    <% }); %>
+</div>
+
+</body>
+</html>
