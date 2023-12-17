@@ -7,7 +7,7 @@
    ```bash
    git clone https://github.com/sefinek24/discord-alts-page
    ```
-3. Rename:
+3. Rename: \
    `ids.default.js` -> `ids.js` \
    `.env.default` -> `.env`
 4. Run the web server:
