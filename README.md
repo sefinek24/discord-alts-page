@@ -10,7 +10,7 @@
 3. Rename: \
    `ids.default.js` -> `ids.js` \
    `.env.default` -> `.env`
-4. Install all required dependencies.
+4. Install all required dependencies:
    ```bash
    npm install
    ```
